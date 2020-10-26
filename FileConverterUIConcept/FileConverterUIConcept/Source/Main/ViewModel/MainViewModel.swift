@@ -11,8 +11,16 @@ import Magnetic
 
 class MainViewModel: BaseViewModel<MainDelegateImpl> {
 
-    func convert(_ importFile: Data? = nil, to exportFormate: String? = nil) -> Data {
+    func convert(_ document: Document,
+                 to exportFormate: String? = nil,
+                 at index: Int) {
 
-        return FileConverterKit.Converter.convert(importFile, to: exportFormate)
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            let data = FileConverterKit.Converter.convert(document.data, to: exportFormate)
+            
+            DispatchQueue.main.async {
+                self?.delegate?.data.append((document, data, exportFormate, index))
+            }
+        }
     }
 }

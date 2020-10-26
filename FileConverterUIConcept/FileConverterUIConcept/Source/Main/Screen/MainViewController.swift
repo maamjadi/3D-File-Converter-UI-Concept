@@ -25,11 +25,11 @@ enum FormateTypes: String, CaseIterable {
 
 class MainDelegateImpl: BaseScreenDelegate {
 
-    typealias DataType = Data
+    typealias DataType = (document: Document, data: Data, exportFormate: String?, index: Int)
 
     private var dataUpdateListener: () -> Void
 
-    var data = [Data]() { didSet { dataUpdateListener() } }
+    var data = [(document: Document, data: Data, exportFormate: String?, index: Int)]() { didSet { dataUpdateListener() } }
 
     var exportFormatSelected = false
 
@@ -40,6 +40,8 @@ class MainDelegateImpl: BaseScreenDelegate {
 
 class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
 
+    @IBOutlet weak var containerView: UIView!
+
     static let bookmarkDataKey = "bookmarkData"
 
     var document: Document?
@@ -47,7 +49,9 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
     private var importButton: UIButton!
     private var importFormatBackgroundView: UIView!
     private var magneticFormateView: MagneticView?
+    private var containerViewController: HomeViewController?
     private var accentColor = UIColor(named: "AccentColor") ?? .blue
+    private var selectedExportFormate: String = ""
     private let magneticFormateViewTitleLabel: UILabel = {
 
         let titleLabel = UILabel()
@@ -72,6 +76,31 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
         setupViews()
     }
 
+    override func onDataUpdated() {
+
+        if let data = delegateImpl.data.last,
+           containerViewController?.delegateImpl.data[data.index].isConverting == true {
+
+            let document = data.document
+
+            let documentMetadataModel = DocumentMetadataModel(fileURL: document.fileURL,
+                                                              localizedName: document.localizedName,
+                                                              fileType: data.exportFormate,
+                                                              fileModificationDate: document.fileModificationDate,
+                                                              data: data.data)
+
+            containerViewController?.delegateImpl.data[data.index] = (false, documentMetadataModel)
+        } else {
+            let documentMetadataModel = DocumentMetadataModel(fileURL: document?.fileURL,
+                                                              localizedName: document?.localizedName,
+                                                              fileType: selectedExportFormate,
+                                                              fileModificationDate: document?.fileModificationDate,
+                                                              data: nil)
+
+            containerViewController?.delegateImpl.data.append((true, documentMetadataModel))
+        }
+    }
+
     func setDocument(_ document: Document, completion: @escaping () -> Void) {
 
         self.document = document
@@ -83,6 +112,12 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
             completion()
         })
 
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "containerSegue" {
+            containerViewController = segue.destination as? HomeViewController
+        }
     }
 
     func presentDocumentDetails(at documentURL: URL, animated: Bool = true) {
@@ -125,7 +160,7 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
     }
 
     private func setupMagneticFormatterView() {
-        let bounds = view.bounds
+        let bounds = navigationController?.view.bounds ?? view.bounds
         let localmagneticFormateView = MagneticView(frame: bounds)
 
         magneticFormateView = localmagneticFormateView
@@ -139,6 +174,8 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
         }
 
         navigationController?.view.addSubview(localmagneticFormateView)
+
+        importButton.bringSubviewToFront(localmagneticFormateView)
 
         let titleLabel = magneticFormateViewTitleLabel
 
@@ -213,9 +250,10 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
                 coder.encode(bookmarkData, forKey: MainViewController.bookmarkDataKey)
 
             } catch {
-                // Make sure to handle the failure appropriately, e.g., by showing an alert to the user
                 os_log("Failed to get bookmark data from URL %@: %@",
                        log: OSLog.default, type: .error, documentURL as CVarArg, error as CVarArg)
+
+                showErrorAlert("Failed to get bookmark data from URL \(documentURL): \(error)")
             }
         }
 
@@ -231,9 +269,10 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
                                           bookmarkDataIsStale: &bookmarkDataIsStale)
                 presentDocumentDetails(at: documentURL, animated: false)
             } catch {
-                // Make sure to handle the failure appropriately, e.g., by showing an alert to the user
                 os_log("Failed to create document URL from bookmark data: %@, error: %@",
                        log: OSLog.default, type: .error, bookmarkData as CVarArg, error as CVarArg)
+
+                showErrorAlert("Failed to create document URL from bookmark data \(bookmarkData): \(error)")
             }
         }
         super.decodeRestorableState(with: coder)
@@ -243,8 +282,17 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
 extension MainViewController: MagneticDelegate {
 
     func magnetic(_ magnetic: Magnetic, didSelect node: Node) {
-        self.viewModel.convert(document?.data, to: node.text)
-        self.hideExpandedConversionView()
+        hideExpandedConversionView()
+
+        guard let document = document else { return }
+
+        selectedExportFormate = node.text ?? ""
+
+        let index = containerViewController?.delegateImpl.data.count ?? 0
+        viewModel.convert(document, to: selectedExportFormate, at: index)
+
+        hideExpandedConversionView()
+        onDataUpdated()
     }
 
     func magnetic(_ magnetic: Magnetic, didDeselect node: Node) { self.hideExpandedConversionView() }

@@ -54,7 +54,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     func documentBrowser(_ controller: UIDocumentBrowserViewController,
                          failedToImportDocumentAt documentURL: URL,
                          error: Error?) {
-        // Make sure to handle the failed import appropriately, e.g., by presenting an error message to the user.
+        showErrorAlert("failed import appropriately with error: \(String(describing: error))")
     }
 
     // MARK: Document Presentation

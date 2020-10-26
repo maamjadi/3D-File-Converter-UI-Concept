@@ -21,7 +21,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9X2-a8-jYP">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                 <connections>
-                                    <segue destination="8ew-DA-UFA" kind="embed" id="cqd-gD-Ib9"/>
+                                    <segue destination="8ew-DA-UFA" kind="embed" identifier="containerSegue" id="cqd-gD-Ib9"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -45,6 +45,9 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="containerView" destination="9X2-a8-jYP" id="4Cv-nr-Sd1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BxX-bx-Ov3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

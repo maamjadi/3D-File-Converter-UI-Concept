@@ -17,7 +17,6 @@
 		E4B47CF72545D641008DDE64 /* ManagedObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B47CF42545D641008DDE64 /* ManagedObjectExtension.swift */; };
 		E4B47CF82545D641008DDE64 /* PersistentContainerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B47CF52545D641008DDE64 /* PersistentContainerExtensions.swift */; };
 		E4B47CF92545D641008DDE64 /* ContextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B47CF62545D641008DDE64 /* ContextExtension.swift */; };
-		E4B47D002545D6D9008DDE64 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B47CFC2545D6D9008DDE64 /* BaseNavigationController.swift */; };
 		E4B47D012545D6D9008DDE64 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B47CFD2545D6D9008DDE64 /* BaseViewController.swift */; };
 		E4B47D022545D6D9008DDE64 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B47CFE2545D6D9008DDE64 /* BaseViewModel.swift */; };
 		E4B47D032545D6D9008DDE64 /* BaseScreenDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B47CFF2545D6D9008DDE64 /* BaseScreenDelegate.swift */; };
@@ -45,6 +44,8 @@
 		E4E57D9A25464D5800258111 /* DocumentDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4E57D9925464D5800258111 /* DocumentDetails.storyboard */; };
 		E4E57DA0254650C600258111 /* speaker.shapr in Resources */ = {isa = PBXBuildFile; fileRef = E4E57D9E254650C600258111 /* speaker.shapr */; };
 		E4E57DA1254650C600258111 /* speaker_grabcad.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E57D9F254650C600258111 /* speaker_grabcad.png */; };
+		E4E57DAA2546A81A00258111 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E57DA92546A81A00258111 /* UIViewController+Extension.swift */; };
+		E4E57DB22546AEBE00258111 /* DocumentMetadataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E57DB12546AEBE00258111 /* DocumentMetadataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,7 +93,6 @@
 		E4B47CF42545D641008DDE64 /* ManagedObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectExtension.swift; sourceTree = "<group>"; };
 		E4B47CF52545D641008DDE64 /* PersistentContainerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentContainerExtensions.swift; sourceTree = "<group>"; };
 		E4B47CF62545D641008DDE64 /* ContextExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextExtension.swift; sourceTree = "<group>"; };
-		E4B47CFC2545D6D9008DDE64 /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		E4B47CFD2545D6D9008DDE64 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		E4B47CFE2545D6D9008DDE64 /* BaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		E4B47CFF2545D6D9008DDE64 /* BaseScreenDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreenDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +119,8 @@
 		E4E57D9925464D5800258111 /* DocumentDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DocumentDetails.storyboard; sourceTree = "<group>"; };
 		E4E57D9E254650C600258111 /* speaker.shapr */ = {isa = PBXFileReference; lastKnownFileType = file; path = speaker.shapr; sourceTree = "<group>"; };
 		E4E57D9F254650C600258111 /* speaker_grabcad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker_grabcad.png; sourceTree = "<group>"; };
+		E4E57DA92546A81A00258111 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		E4E57DB12546AEBE00258111 /* DocumentMetadataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentMetadataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				E4B47CD12545C834008DDE64 /* Document.swift */,
+				E4E57DB12546AEBE00258111 /* DocumentMetadataModel.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -249,7 +252,6 @@
 			isa = PBXGroup;
 			children = (
 				E4B47CFF2545D6D9008DDE64 /* BaseScreenDelegate.swift */,
-				E4B47CFC2545D6D9008DDE64 /* BaseNavigationController.swift */,
 				E4B47CFD2545D6D9008DDE64 /* BaseViewController.swift */,
 				E4B47CFE2545D6D9008DDE64 /* BaseViewModel.swift */,
 			);
@@ -285,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				E4B47D482545EB02008DDE64 /* UIView+Extension.swift */,
+				E4E57DA92546A81A00258111 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -624,13 +627,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4E57DAA2546A81A00258111 /* UIViewController+Extension.swift in Sources */,
 				E4B47D492545EB02008DDE64 /* UIView+Extension.swift in Sources */,
 				E4B47D012545D6D9008DDE64 /* BaseViewController.swift in Sources */,
 				E4B47D022545D6D9008DDE64 /* BaseViewModel.swift in Sources */,
 				E4B47CD22545C834008DDE64 /* Document.swift in Sources */,
 				E4B47CD02545C834008DDE64 /* DocumentViewController.swift in Sources */,
 				E4B47D632545EEEB008DDE64 /* HomeCollectionViewCell.swift in Sources */,
-				E4B47D002545D6D9008DDE64 /* BaseNavigationController.swift in Sources */,
+				E4E57DB22546AEBE00258111 /* DocumentMetadataModel.swift in Sources */,
 				E4B47D692545F2CB008DDE64 /* MainViewController.swift in Sources */,
 				E4B47D6F2545F34C008DDE64 /* MainViewModel.swift in Sources */,
 				E4B47D032545D6D9008DDE64 /* BaseScreenDelegate.swift in Sources */,
