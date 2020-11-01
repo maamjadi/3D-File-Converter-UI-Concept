@@ -22,10 +22,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="465" height="306"/>
                         <subviews>
                             <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="QeK-P1-Std" customClass="AnimationView" customModule="Lottie">
-                                <rect key="frame" x="0.0" y="0.0" width="465" height="306"/>
+                                <rect key="frame" x="0.0" y="0.0" width="465" height="231"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="ConversionAnimation"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="conversionAnimation"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speaker_grabcad.png" translatesAutoresizingMaskIntoConstraints="NO" id="AR6-N1-Sz6">
@@ -64,7 +64,7 @@
                             <constraint firstItem="QeK-P1-Std" firstAttribute="leading" secondItem="DJ8-rZ-SJ4" secondAttribute="leading" id="Q71-Rc-ADC"/>
                             <constraint firstAttribute="trailing" secondItem="M4w-da-gOk" secondAttribute="trailing" id="Rsf-9J-7QL"/>
                             <constraint firstAttribute="bottom" secondItem="AR6-N1-Sz6" secondAttribute="bottom" id="Wce-8K-GcS"/>
-                            <constraint firstAttribute="bottom" secondItem="QeK-P1-Std" secondAttribute="bottom" id="XX6-rp-adb"/>
+                            <constraint firstItem="M4w-da-gOk" firstAttribute="top" secondItem="QeK-P1-Std" secondAttribute="bottom" id="XX6-rp-adb"/>
                             <constraint firstAttribute="trailing" secondItem="QeK-P1-Std" secondAttribute="trailing" id="Xmv-Lh-7aK"/>
                             <constraint firstItem="AR6-N1-Sz6" firstAttribute="top" secondItem="DJ8-rZ-SJ4" secondAttribute="top" id="ccn-Kk-2MC"/>
                             <constraint firstAttribute="trailing" secondItem="AR6-N1-Sz6" secondAttribute="trailing" id="hhC-XB-xwF"/>
@@ -83,7 +83,7 @@
             </constraints>
             <size key="customSize" width="465" height="306"/>
             <connections>
-                <outlet property="animationContainerView" destination="QeK-P1-Std" id="v62-IN-Nw0"/>
+                <outlet property="animationView" destination="QeK-P1-Std" id="v62-IN-Nw0"/>
                 <outlet property="containerView" destination="DJ8-rZ-SJ4" id="wQS-db-heA"/>
                 <outlet property="renderedImage" destination="AR6-N1-Sz6" id="MvH-zy-7bY"/>
                 <outlet property="titleLabel" destination="c24-EM-AU9" id="voS-pw-c3e"/>

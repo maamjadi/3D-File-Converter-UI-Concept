@@ -11,7 +11,7 @@ import Lottie
 class HomeCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var animationContainerView: AnimationView!
+    @IBOutlet weak var animationView: AnimationView!
     @IBOutlet weak var renderedImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
 
@@ -19,14 +19,27 @@ class HomeCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
 
         containerView.setRoundCorners(with: 5)
+
+        animationView.loopMode = .loop
+
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        layer.shadowRadius = 2.0
+        layer.shadowOpacity = 0.5
+        layer.masksToBounds = false
     }
 
     var metadataModel: DocumentMetadataModel? {
         didSet {
-            if let metadataModel = metadataModel  {
-                titleLabel.text = (metadataModel.data != nil ?
-                                    metadataModel.localizedName :
-                                    ("Converting \(metadataModel.localizedName) to \(String(describing: metadataModel.fileType))..."))
+            if let metadataModel = metadataModel,
+               let filename = metadataModel.localizedName {
+
+                let fileType = metadataModel.fileType
+                let conversionText = "Converting to \(filename)\(fileType ?? "")..."
+
+                titleLabel.text = (metadataModel.data != nil ? filename : conversionText)
+            } else {
+                titleLabel.text = "Converting..."
             }
         }
     }
@@ -34,10 +47,9 @@ class HomeCollectionViewCell: UICollectionViewCell {
     var isConverting: Bool = true {
         didSet {
             if isConverting {
-                animationContainerView.play()
-                titleLabel.text = "Converting..."
+                animationView.play()
 
-            } else { animationContainerView.stop() }
+            } else { animationView.stop() }
 
             renderedImage.isHidden = isConverting
             titleLabel.font = UIFont(name: (isConverting ? "Avenir-Light" : "Avenir-Black"),

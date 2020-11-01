@@ -78,8 +78,8 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
 
     override func onDataUpdated() {
 
-        if let data = delegateImpl.data.last,
-           containerViewController?.delegateImpl.data[data.index].isConverting == true {
+        if let data = data.last,
+           containerViewController?.data[data.index].isConverting == true {
 
             let document = data.document
 
@@ -89,7 +89,7 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
                                                               fileModificationDate: document.fileModificationDate,
                                                               data: data.data)
 
-            containerViewController?.delegateImpl.data[data.index] = (false, documentMetadataModel)
+            containerViewController?.viewModel.updateData(with: (false, documentMetadataModel), at: data.index)
         } else {
             let documentMetadataModel = DocumentMetadataModel(fileURL: document?.fileURL,
                                                               localizedName: document?.localizedName,
@@ -97,7 +97,7 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
                                                               fileModificationDate: document?.fileModificationDate,
                                                               data: nil)
 
-            containerViewController?.delegateImpl.data.append((true, documentMetadataModel))
+            containerViewController?.viewModel.insert((true, documentMetadataModel))
         }
     }
 
@@ -288,7 +288,7 @@ extension MainViewController: MagneticDelegate {
 
         selectedExportFormate = node.text ?? ""
 
-        let index = containerViewController?.delegateImpl.data.count ?? 0
+        let index = containerViewController?.data.count ?? 0
         viewModel.convert(document, to: selectedExportFormate, at: index)
 
         hideExpandedConversionView()

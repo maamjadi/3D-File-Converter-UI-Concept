@@ -11,15 +11,16 @@ import UIKit
 class BaseViewController<T: BaseScreenDelegate, VM: BaseViewModel<T>>: UIViewController {
 
     private var _viewModel: VM!
-    var viewModel: VM { _viewModel }
+    private var _delegateImpl: T!
 
-    var delegateImpl: T!
+    var viewModel: VM { _viewModel }
+    var data: [T.DataType] { _delegateImpl.data }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        delegateImpl = T(onDataUpdated)
-        _viewModel = VM(delegateImpl)
+        _delegateImpl = T(onDataUpdated)
+        _viewModel = VM(_delegateImpl)
     }
 
     //This function is called when the data is updated
