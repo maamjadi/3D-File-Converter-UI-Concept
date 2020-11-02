@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - BaseScreenDelegate
+
 class HomeDelegateImpl: BaseScreenDelegate {
 
     typealias DataType = (isConverting: Bool, metadataModel: DocumentMetadataModel?)
@@ -22,16 +24,25 @@ class HomeDelegateImpl: BaseScreenDelegate {
     }
 }
 
+// MARK: - UIViewController
+
 class HomeViewController: BaseViewController<HomeDelegateImpl, HomeViewModel> {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
+    private let transition = PopAnimator()
     private let cellIdentifier = "homeCell"
+
+    private var selectedCell = UICollectionViewCell()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupCollectionView()
+
+        transition.dismissCompletion = {
+            self.selectedCell.isHidden = false
+        }
     }
 
     private func setupCollectionView() {
@@ -58,7 +69,19 @@ class HomeViewController: BaseViewController<HomeDelegateImpl, HomeViewModel> {
             } else { collectionView.insertItems(at: [indexPath]) }
         }
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if let detailsViewController = segue.destination as? DocumentViewController,
+            let documentMetadata = sender as? DocumentMetadataModel {
+
+            detailsViewController.documentMetadata = documentMetadata
+            detailsViewController.transitioningDelegate = self
+        }
+    }
 }
+
+// MARK: - UICollectionViewDataSource & UICollectionViewDelegate
 
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -82,5 +105,47 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? HomeCollectionViewCell,
+              let documentMetadata = cell.metadataModel else { return }
+
+        if cell.isConverting {
+            showAlert("File under conversion, please wait!", title: "Warning")
+
+        } else {
+            selectedCell = cell
+
+            let storyBoard = UIStoryboard(name: "DocumentDetails", bundle: nil)
+            let instantiatedViewController = storyBoard.instantiateInitialViewController()
+
+            if let detailsViewController = instantiatedViewController as? DocumentViewController {
+                detailsViewController.documentMetadata = documentMetadata
+                detailsViewController.transitioningDelegate = self
+                detailsViewController.modalPresentationStyle = .fullScreen
+                navigationController?.present(detailsViewController, animated: true, completion: nil)
+            }
+        }
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension HomeViewController: UIViewControllerTransitioningDelegate {
+
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+
+        guard let originFrame = selectedCell.superview?.convert(selectedCell.frame, to: nil)
+        else { return transition }
+
+        transition.originFrame = originFrame
+        transition.presenting = true
+        selectedCell.isHidden = true
+        return transition
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = false
+        return transition
     }
 }

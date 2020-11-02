@@ -11,12 +11,17 @@ import FileConverterKit
 class DocumentViewController: UIViewController {
 
     @IBOutlet weak var documentNameLabel: UILabel!
+    @IBOutlet weak var headerContainerView: UIView!
 
-    var document: UIDocument?
+    var documentMetadata: DocumentMetadataModel?
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        documentNameLabel.text = documentMetadata?.localizedName ?? ""
+    }
 
     @IBAction func dismissDocumentViewController() {
-        dismiss(animated: true) {
-            self.document?.close(completionHandler: nil)
-        }
+        dismiss(animated: true, completion: nil)
     }
 }

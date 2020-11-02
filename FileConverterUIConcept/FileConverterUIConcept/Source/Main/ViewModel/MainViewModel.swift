@@ -17,9 +17,10 @@ class MainViewModel: BaseViewModel<MainDelegateImpl> {
 
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             let data = FileConverterKit.Converter.convert(document.data, to: exportFormate)
-            
+
             DispatchQueue.main.async {
                 self?.delegate?.data.append((document, data, exportFormate, index))
+                document.close(completionHandler: nil)
             }
         }
     }

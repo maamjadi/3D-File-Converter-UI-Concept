@@ -10,6 +10,8 @@ import Magnetic
 import SnapKit
 import os.log
 
+// MARK: - FormateTypes
+
 enum FormateTypes: String, CaseIterable {
     case step = ".step"
     case stl = ".stl"
@@ -23,13 +25,18 @@ enum FormateTypes: String, CaseIterable {
     }
 }
 
+// MARK: - BaseScreenDelegate
+
 class MainDelegateImpl: BaseScreenDelegate {
 
     typealias DataType = (document: Document, data: Data, exportFormate: String?, index: Int)
 
     private var dataUpdateListener: () -> Void
 
-    var data = [(document: Document, data: Data, exportFormate: String?, index: Int)]() { didSet { dataUpdateListener() } }
+    var data = [(document: Document,
+                 data: Data,
+                 exportFormate: String?,
+                 index: Int)]() { didSet { dataUpdateListener() } }
 
     var exportFormatSelected = false
 
@@ -37,6 +44,8 @@ class MainDelegateImpl: BaseScreenDelegate {
         self.dataUpdateListener = listener
     }
 }
+
+// MARK: - UIViewController
 
 class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
 
@@ -105,9 +114,10 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
 
         self.document = document
 
-        document.open(completionHandler: { (success) in
+        document.open(completionHandler: { [weak self] (success) in
 
-            if success {
+            if !success {
+                self?.showAlert("Failed to open document")
             }
             completion()
         })
@@ -127,7 +137,18 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
         guard let documentViewController = instantiatedViewController as? DocumentViewController else { fatalError() }
         documentViewController.modalPresentationStyle = .overFullScreen
 
-        documentViewController.document = self.document
+        let document = Document(fileURL: documentURL)
+        document.open(completionHandler: nil)
+
+        let documentMetadata = DocumentMetadataModel(fileURL: documentURL,
+                                                     localizedName: document.localizedName,
+                                                     fileType: document.fileType,
+                                                     fileModificationDate: document.fileModificationDate,
+                                                     data: document.data)
+
+        documentViewController.documentMetadata = documentMetadata
+
+        document.close(completionHandler: nil)
 
         present(documentViewController, animated: animated, completion: nil)
     }
@@ -232,8 +253,11 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
         }
 
     }
+}
 
-    // MARK: State Preservation and Restoration
+// MARK: State Preservation and Restoration
+
+extension MainViewController {
 
     override func encodeRestorableState(with coder: NSCoder) {
 
@@ -253,7 +277,7 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
                 os_log("Failed to get bookmark data from URL %@: %@",
                        log: OSLog.default, type: .error, documentURL as CVarArg, error as CVarArg)
 
-                showErrorAlert("Failed to get bookmark data from URL \(documentURL): \(error)")
+                showAlert("Failed to get bookmark data from URL \(documentURL): \(error)")
             }
         }
 
@@ -272,12 +296,14 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
                 os_log("Failed to create document URL from bookmark data: %@, error: %@",
                        log: OSLog.default, type: .error, bookmarkData as CVarArg, error as CVarArg)
 
-                showErrorAlert("Failed to create document URL from bookmark data \(bookmarkData): \(error)")
+                showAlert("Failed to create document URL from bookmark data \(bookmarkData): \(error)")
             }
         }
         super.decodeRestorableState(with: coder)
     }
 }
+
+// MARK: - MagneticDelegate
 
 extension MainViewController: MagneticDelegate {
 

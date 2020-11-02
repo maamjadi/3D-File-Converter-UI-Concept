@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E473BFF7254F2B9900B0549A /* conversionAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = E473BFF6254F2B9900B0549A /* conversionAnimation.json */; };
 		E473C005254F3F6D00B0549A /* UIViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = E473C004254F3F6D00B0549A /* UIViewX.swift */; };
+		E473C028254F7B2500B0549A /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E473C027254F7B2500B0549A /* PopAnimator.swift */; };
 		E4B47CCC2545C834008DDE64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B47CCB2545C834008DDE64 /* AppDelegate.swift */; };
 		E4B47CCE2545C834008DDE64 /* DocumentBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B47CCD2545C834008DDE64 /* DocumentBrowserViewController.swift */; };
 		E4B47CD02545C834008DDE64 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B47CCF2545C834008DDE64 /* DocumentViewController.swift */; };
@@ -85,6 +86,7 @@
 /* Begin PBXFileReference section */
 		E473BFF6254F2B9900B0549A /* conversionAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = conversionAnimation.json; sourceTree = "<group>"; };
 		E473C004254F3F6D00B0549A /* UIViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewX.swift; sourceTree = "<group>"; };
+		E473C027254F7B2500B0549A /* PopAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
 		E4B47CC82545C834008DDE64 /* FileConverterUIConcept.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FileConverterUIConcept.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B47CCB2545C834008DDE64 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4B47CCD2545C834008DDE64 /* DocumentBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserViewController.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 		E4B47D312545E151008DDE64 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E4B47D422545E962008DDE64 /* AnimationControllers */,
 				E473C003254F3F6300B0549A /* Views */,
 				E4B47D472545EAC6008DDE64 /* Extensions */,
 				E4B47D172545D986008DDE64 /* FileConverterKit */,
@@ -292,6 +295,7 @@
 		E4B47D422545E962008DDE64 /* AnimationControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E473C027254F7B2500B0549A /* PopAnimator.swift */,
 			);
 			path = AnimationControllers;
 			sourceTree = "<group>";
@@ -337,7 +341,6 @@
 				E4E57D8725464C0600258111 /* DocumentBrowser */,
 				E4E57D7B25464BC600258111 /* DocumentDetails */,
 				E4B47D672545F2A3008DDE64 /* Main */,
-				E4B47D422545E962008DDE64 /* AnimationControllers */,
 				E4B47CFB2545D675008DDE64 /* BaseFiles */,
 				E4B47D572545ED9E008DDE64 /* Home */,
 			);
@@ -655,6 +658,7 @@
 				E4B47D032545D6D9008DDE64 /* BaseScreenDelegate.swift in Sources */,
 				E4B47CF72545D641008DDE64 /* ManagedObjectExtension.swift in Sources */,
 				E4B47CCE2545C834008DDE64 /* DocumentBrowserViewController.swift in Sources */,
+				E473C028254F7B2500B0549A /* PopAnimator.swift in Sources */,
 				E4B47D532545ED72008DDE64 /* HomeViewModel.swift in Sources */,
 				E4B47CF82545D641008DDE64 /* PersistentContainerExtensions.swift in Sources */,
 				E4B47CF92545D641008DDE64 /* ContextExtension.swift in Sources */,

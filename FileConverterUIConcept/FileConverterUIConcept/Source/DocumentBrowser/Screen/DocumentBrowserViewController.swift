@@ -26,6 +26,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
 
     // MARK: UIDocumentBrowserViewControllerDelegate
 
+    //swiftlint:disable line_length
     func documentBrowser(_ controller: UIDocumentBrowserViewController,
                          didRequestDocumentCreationWithHandler importHandler: @escaping (URL?,
                                                                                          UIDocumentBrowserViewController.ImportMode) -> Void) {
@@ -38,6 +39,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
             importHandler(nil, .none)
         }
     }
+    //swiftlint:enable line_length
 
     func documentBrowser(_ controller: UIDocumentBrowserViewController, didPickDocumentsAt documentURLs: [URL]) {
         guard let sourceURL = documentURLs.first else { return }
@@ -54,7 +56,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     func documentBrowser(_ controller: UIDocumentBrowserViewController,
                          failedToImportDocumentAt documentURL: URL,
                          error: Error?) {
-        showErrorAlert("failed import appropriately with error: \(String(describing: error))")
+        showAlert("failed import appropriately with error: \(String(describing: error))")
     }
 
     // MARK: Document Presentation
