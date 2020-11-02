@@ -13,6 +13,7 @@ class BaseViewController<T: BaseScreenDelegate, VM: BaseViewModel<T>>: UIViewCon
     private var _viewModel: VM!
     private var _delegateImpl: T!
 
+    //Warning: Do not access the viewModel object before presentation of the ViewController
     var viewModel: VM { _viewModel }
     var data: [T.DataType] { _delegateImpl.data }
 

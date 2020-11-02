@@ -68,8 +68,6 @@
                             <constraint firstAttribute="trailing" secondItem="QeK-P1-Std" secondAttribute="trailing" id="Xmv-Lh-7aK"/>
                             <constraint firstItem="AR6-N1-Sz6" firstAttribute="top" secondItem="DJ8-rZ-SJ4" secondAttribute="top" id="ccn-Kk-2MC"/>
                             <constraint firstAttribute="trailing" secondItem="AR6-N1-Sz6" secondAttribute="trailing" id="hhC-XB-xwF"/>
-                            <constraint firstAttribute="height" priority="999" constant="200" id="jWI-ZB-KNh"/>
-                            <constraint firstAttribute="width" priority="999" constant="300" id="yrt-dy-8hs"/>
                         </constraints>
                     </view>
                 </subviews>

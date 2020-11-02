@@ -10,5 +10,12 @@ import Foundation
 
 class BaseViewModel<T: BaseScreenDelegate> {
     weak var delegate: T?
-    required init(_ delegate: T) { self.delegate = delegate }
+
+    required init(_ delegate: T) {
+        self.delegate = delegate
+        initialized()
+    }
+
+    //This function is called when the ViewModel is initialized
+    func initialized() {}
 }

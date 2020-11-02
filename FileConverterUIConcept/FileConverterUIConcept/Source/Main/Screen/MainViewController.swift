@@ -29,14 +29,15 @@ enum FormateTypes: String, CaseIterable {
 
 class MainDelegateImpl: BaseScreenDelegate {
 
-    typealias DataType = (document: Document, data: Data, exportFormate: String?, index: Int)
+    typealias DataType = (document: Document, data: Data, exportFormate: String?, index: Int, uniqueIdentifier: Int)
 
     private var dataUpdateListener: () -> Void
 
     var data = [(document: Document,
                  data: Data,
                  exportFormate: String?,
-                 index: Int)]() { didSet { dataUpdateListener() } }
+                 index: Int,
+                 uniqueIdentifier: Int)]() { didSet { dataUpdateListener() } }
 
     var exportFormatSelected = false
 
@@ -59,6 +60,7 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
     private var importFormatBackgroundView: UIView!
     private var magneticFormateView: MagneticView?
     private var containerViewController: HomeViewController?
+    private var availableIdentifier: Int = 0
     private var accentColor = UIColor(named: "AccentColor") ?? .blue
     private var selectedExportFormate: String = ""
     private let magneticFormateViewTitleLabel: UILabel = {
@@ -83,31 +85,47 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
         super.viewDidLoad()
 
         setupViews()
+        loadData()
     }
 
     override func onDataUpdated() {
 
-        if let data = data.last,
-           containerViewController?.data[data.index].isConverting == true {
+        if viewModel.numberOfRunningConversionProcesses > 0 {
+            if let cellData = data.last,
+               let containerVCData = containerViewController?.data[cellData.index],
+               let documentIdentifier = containerVCData.metadataModel?.uniqueIdentifier,
+               containerVCData.isConverting == true {
 
-            let document = data.document
+                let document = cellData.document
 
-            let documentMetadataModel = DocumentMetadataModel(fileURL: document.fileURL,
-                                                              localizedName: document.localizedName,
-                                                              fileType: data.exportFormate,
-                                                              fileModificationDate: document.fileModificationDate,
-                                                              data: data.data)
+                let documentMetadataModel = DocumentMetadataModel(uniqueIdentifier: documentIdentifier,
+                                                                  fileURL: document.fileURL,
+                                                                  localizedName: document.localizedName,
+                                                                  fileType: cellData.exportFormate,
+                                                                  fileModificationDate: document.fileModificationDate,
+                                                                  data: cellData.data)
 
-            containerViewController?.viewModel.updateData(with: (false, documentMetadataModel), at: data.index)
-        } else {
-            let documentMetadataModel = DocumentMetadataModel(fileURL: document?.fileURL,
-                                                              localizedName: document?.localizedName,
-                                                              fileType: selectedExportFormate,
-                                                              fileModificationDate: document?.fileModificationDate,
-                                                              data: nil)
+                containerViewController?.viewModel.updateData(with: (false, documentMetadataModel), at: cellData.index)
 
-            containerViewController?.viewModel.insert((true, documentMetadataModel))
+            } else {
+
+                let documentMetadataModel = DocumentMetadataModel(uniqueIdentifier: availableIdentifier,
+                                                                  fileURL: document?.fileURL,
+                                                                  localizedName: document?.localizedName,
+                                                                  fileType: selectedExportFormate,
+                                                                  fileModificationDate: document?.fileModificationDate,
+                                                                  data: nil)
+
+                containerViewController?.viewModel.insert((true, documentMetadataModel))
+            }
         }
+    }
+
+    private func loadData() {
+        let convertedFiles = viewModel.loadConvertedModels()
+        containerViewController?.viewModel.set(with: convertedFiles)
+        containerViewController?.viewModel.deleteDocument = viewModel.deleteDocument(with:removedCellIndex:)
+        containerViewController?.viewModel.addOrUpdateDocument = viewModel.addOrUpdateDocument(from:)
     }
 
     func setDocument(_ document: Document, completion: @escaping () -> Void) {
@@ -140,7 +158,8 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
         let document = Document(fileURL: documentURL)
         document.open(completionHandler: nil)
 
-        let documentMetadata = DocumentMetadataModel(fileURL: documentURL,
+        let documentMetadata = DocumentMetadataModel(uniqueIdentifier: 0,
+                                                     fileURL: documentURL,
                                                      localizedName: document.localizedName,
                                                      fileType: document.fileType,
                                                      fileModificationDate: document.fileModificationDate,
@@ -314,8 +333,12 @@ extension MainViewController: MagneticDelegate {
 
         selectedExportFormate = node.text ?? ""
 
+        availableIdentifier = containerViewController?.data.compactMap({
+            $0.metadataModel?.uniqueIdentifier
+        }).getFirstFreeInt() ?? 0
+
         let index = containerViewController?.data.count ?? 0
-        viewModel.convert(document, to: selectedExportFormate, at: index)
+        viewModel.convert(document, to: selectedExportFormate, at: index, with: availableIdentifier)
 
         hideExpandedConversionView()
         onDataUpdated()

@@ -34,6 +34,7 @@ class HomeViewController: BaseViewController<HomeDelegateImpl, HomeViewModel> {
     private let cellIdentifier = "homeCell"
 
     private var selectedCell = UICollectionViewCell()
+    private var previousDataSetCount = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,13 +62,21 @@ class HomeViewController: BaseViewController<HomeDelegateImpl, HomeViewModel> {
 
             if collectionView.cellForItem(at: indexPath) != nil,
                collectionView.indexPathsForVisibleItems.contains(indexPath) {
-                collectionView.reloadItems(at: [indexPath])
 
-                collectionView.layoutIfNeeded()
-                collectionView.setContentOffset(contentOffset, animated: false)
+                if previousDataSetCount > data.count {
+                    self.collectionView.reloadData()
+
+                } else {
+                    collectionView.reloadItems(at: [indexPath])
+
+                    collectionView.layoutIfNeeded()
+                    collectionView.setContentOffset(contentOffset, animated: false)
+                }
 
             } else { collectionView.insertItems(at: [indexPath]) }
         }
+
+        previousDataSetCount = data.count
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -81,9 +90,11 @@ class HomeViewController: BaseViewController<HomeDelegateImpl, HomeViewModel> {
     }
 }
 
-// MARK: - UICollectionViewDataSource & UICollectionViewDelegate
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 
-extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension HomeViewController: UICollectionViewDataSource,
+                              UICollectionViewDelegate,
+                              UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data.count
@@ -122,8 +133,19 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 detailsViewController.transitioningDelegate = self
                 detailsViewController.modalPresentationStyle = .fullScreen
                 navigationController?.present(detailsViewController, animated: true, completion: nil)
+
+                detailsViewController.viewModel.deleteDocument = viewModel.delete(_:)
             }
         }
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        let width: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 300 : (collectionView.bounds.width - 40)
+
+        return CGSize(width: width, height: 200)
     }
 }
 
