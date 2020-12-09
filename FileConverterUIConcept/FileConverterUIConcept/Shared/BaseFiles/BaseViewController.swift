@@ -11,7 +11,7 @@ import UIKit
 class BaseViewController<T: BaseScreenDelegate, VM: BaseViewModel<T>>: UIViewController {
 
     private var _viewModel: VM!
-    private var _delegateImpl: T!
+    private weak var _delegateImpl: T!
 
     //Warning: Do not access the viewModel object before presentation of the ViewController
     var viewModel: VM { _viewModel }

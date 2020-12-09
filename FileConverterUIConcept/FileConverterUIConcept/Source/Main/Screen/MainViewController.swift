@@ -39,8 +39,6 @@ class MainDelegateImpl: BaseScreenDelegate {
                  index: Int,
                  uniqueIdentifier: Int)]() { didSet { dataUpdateListener() } }
 
-    var exportFormatSelected = false
-
     required init(_ listener: @escaping () -> Void) {
         self.dataUpdateListener = listener
     }
@@ -200,6 +198,7 @@ class MainViewController: BaseViewController<MainDelegateImpl, MainViewModel> {
     }
 
     private func setupMagneticFormatterView() {
+
         let bounds = navigationController?.view.bounds ?? view.bounds
         let localmagneticFormateView = MagneticView(frame: bounds)
 

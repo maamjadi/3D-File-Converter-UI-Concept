@@ -25,7 +25,7 @@ class BaseScreenDelegateImpl: BaseScreenDelegate {
 
     private var dataUpdateListener: () -> Void
 
-    var data: [BaseScreenDelegateImpl.DataType] = [DataType]() {
+    var data: [DataType] = [DataType]() {
         didSet { dataUpdateListener() }
     }
 
