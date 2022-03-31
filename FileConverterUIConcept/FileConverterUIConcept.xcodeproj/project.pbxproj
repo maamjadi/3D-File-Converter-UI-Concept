@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E411C74527F587D1007FA971 /* FileConverterKit in Frameworks */ = {isa = PBXBuildFile; productRef = E411C74427F587D1007FA971 /* FileConverterKit */; };
 		E427BF34254FE36800151B64 /* FileConverterUIConcept.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E427BF32254FE36800151B64 /* FileConverterUIConcept.xcdatamodeld */; };
 		E473BFF7254F2B9900B0549A /* conversionAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = E473BFF6254F2B9900B0549A /* conversionAnimation.json */; };
 		E473C005254F3F6D00B0549A /* UIViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = E473C004254F3F6D00B0549A /* UIViewX.swift */; };
@@ -29,7 +30,6 @@
 		E4B47D032545D6D9008DDE64 /* BaseScreenDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B47CFF2545D6D9008DDE64 /* BaseScreenDelegate.swift */; };
 		E4B47D072545D811008DDE64 /* Magnetic in Frameworks */ = {isa = PBXBuildFile; productRef = E4B47D062545D811008DDE64 /* Magnetic */; };
 		E4B47D0B2545D83F008DDE64 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E4B47D0A2545D83F008DDE64 /* SnapKit */; };
-		E4B47D1B2545DD61008DDE64 /* FileConverterKit in Frameworks */ = {isa = PBXBuildFile; productRef = E4B47D1A2545DD61008DDE64 /* FileConverterKit */; };
 		E4B47D3F2545E65B008DDE64 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4B47D3E2545E65B008DDE64 /* Media.xcassets */; };
 		E4B47D492545EB02008DDE64 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B47D482545EB02008DDE64 /* UIView+Extension.swift */; };
 		E4B47D4E2545ECCF008DDE64 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B47D4D2545ECCF008DDE64 /* HomeViewController.swift */; };
@@ -89,6 +89,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E411C74327F587A1007FA971 /* FileConverterKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = FileConverterKit; sourceTree = "<group>"; };
 		E427BF33254FE36800151B64 /* FileConverterUIConcept.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FileConverterUIConcept.xcdatamodel; sourceTree = "<group>"; };
 		E473BFF6254F2B9900B0549A /* conversionAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = conversionAnimation.json; sourceTree = "<group>"; };
 		E473C004254F3F6D00B0549A /* UIViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewX.swift; sourceTree = "<group>"; };
@@ -111,7 +112,6 @@
 		E4B47CFD2545D6D9008DDE64 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		E4B47CFE2545D6D9008DDE64 /* BaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		E4B47CFF2545D6D9008DDE64 /* BaseScreenDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreenDelegate.swift; sourceTree = "<group>"; };
-		E4B47D172545D986008DDE64 /* FileConverterKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FileConverterKit; sourceTree = "<group>"; };
 		E4B47D3E2545E65B008DDE64 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E4B47D482545EB02008DDE64 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		E4B47D4D2545ECCF008DDE64 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -144,9 +144,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E411C74527F587D1007FA971 /* FileConverterKit in Frameworks */,
 				E4B47D072545D811008DDE64 /* Magnetic in Frameworks */,
 				E4B47D0B2545D83F008DDE64 /* SnapKit in Frameworks */,
-				E4B47D1B2545DD61008DDE64 /* FileConverterKit in Frameworks */,
 				E4E57D7725464A7000258111 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,6 +170,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E411C74227F587A1007FA971 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				E411C74327F587A1007FA971 /* FileConverterKit */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		E473C003254F3F6300B0549A /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +189,7 @@
 		E4B47CBF2545C834008DDE64 = {
 			isa = PBXGroup;
 			children = (
+				E411C74227F587A1007FA971 /* Packages */,
 				E4B47CCA2545C834008DDE64 /* FileConverterUIConcept */,
 				E4E57D4D2546400400258111 /* FileConverterUIConceptPreview */,
 				E4E57D642546401E00258111 /* FileConverterUIConceptThumbnails */,
@@ -301,7 +310,6 @@
 				E4B47D422545E962008DDE64 /* AnimationControllers */,
 				E473C003254F3F6300B0549A /* Views */,
 				E4B47D472545EAC6008DDE64 /* Extensions */,
-				E4B47D172545D986008DDE64 /* FileConverterKit */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -520,8 +528,8 @@
 			packageProductDependencies = (
 				E4B47D062545D811008DDE64 /* Magnetic */,
 				E4B47D0A2545D83F008DDE64 /* SnapKit */,
-				E4B47D1A2545DD61008DDE64 /* FileConverterKit */,
 				E4E57D7625464A7000258111 /* Lottie */,
+				E411C74427F587D1007FA971 /* FileConverterKit */,
 			);
 			productName = FileConverterUIConcept;
 			productReference = E4B47CC82545C834008DDE64 /* FileConverterUIConcept.app */;
@@ -1058,6 +1066,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E411C74427F587D1007FA971 /* FileConverterKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FileConverterKit;
+		};
 		E4B47D062545D811008DDE64 /* Magnetic */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E4B47D052545D811008DDE64 /* XCRemoteSwiftPackageReference "Magnetic" */;
@@ -1067,10 +1079,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E4B47D092545D83F008DDE64 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		E4B47D1A2545DD61008DDE64 /* FileConverterKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = FileConverterKit;
 		};
 		E4E57D7625464A7000258111 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;

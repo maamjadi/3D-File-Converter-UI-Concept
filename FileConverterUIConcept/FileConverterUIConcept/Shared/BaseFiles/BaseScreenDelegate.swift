@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - BaseScreenDelegate
 
-protocol BaseScreenDelegate: class {
+protocol BaseScreenDelegate: AnyObject {
     associatedtype DataType
     var data: [DataType] { get set }
 
