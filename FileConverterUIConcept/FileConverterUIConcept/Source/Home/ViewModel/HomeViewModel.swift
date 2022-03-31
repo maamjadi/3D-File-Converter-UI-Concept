@@ -1,47 +1,58 @@
 //
 //  HomeViewModel.swift
-//  FileConverterUIConcept
-//
-//  Created by Amjadi on 2020. 10. 25..
 //
 
-import Foundation
+import UIKit
+import Combine
+import DataAccess
+import MVVMiOS
 
-class HomeViewModel: BaseViewModel<HomeDelegateImpl> {
+class HomeViewModel: BaseViewModel<HomeRouter, HomeInteractor, HomeAnalyticsController> {
 
-    var updatedDataIndex: Int?
-    var deleteDocument: ((Int, Int) -> Void)?
-    var addOrUpdateDocument: ((DocumentMetadataModel) -> Void)?
+    let showAlertDialog = PassthroughSubject<Void, Never>()
 
-    func set(with dataSet: [DocumentMetadataModel]) {
-        updatedDataIndex = nil
-        delegate?.data = dataSet.compactMap({ (false, $0) })
+    @Published var data = [PizzaDataModel]()
+
+    override func viewModelDidLoad() {
+        super.viewModelDidLoad()
+
+        interactor.loadPizzaList()
+            .sink { [weak self] result in
+                switch result {
+                case .success(let pizzaList):
+                    self?.data = pizzaList
+                case .failure(let error):
+                    self?.logger.e(title: "HomeViewModel.loadPizzaList", message: error.localizedDescription)
+                }
+            }
+            .store(in: &subscribers)
     }
 
-    func delete(_ identifier: (Int)) {
+    @objc
+    func navigateCheckoutScreen() { router.navigateCheckoutScreen() }
 
-        guard let data = delegate?.data else { return }
+    @objc
+    func createPizzaNavigation() {
+        let pizzaDTO = PizzaDTO(name: Constants.customPizzaName, ingredients: [], imageUrl: nil)
+        let customPizza = PizzaDataModel(pizzaDTO: pizzaDTO, ingredientsDTO: [], basePrice: interactor.basePrice)
 
-        for (index, cellData) in data.enumerated() where cellData.metadataModel?.uniqueIdentifier == identifier {
-            delegate?.data.remove(at: index)
-            updatedDataIndex = index
-        }
-
-        deleteDocument?(identifier, updatedDataIndex ?? 0)
+        navigateCreatePizza(with: customPizza)
     }
 
-    func insert(_ data: HomeDelegateImpl.DataType) {
-        let delegateData = delegate?.data
-        updatedDataIndex = (delegateData != nil) ? (delegateData!.isEmpty ? 0 : delegateData!.count - 1) : nil
-        delegate?.data.append(data)
+    func navigateCreatePizza(with pizzaData: PizzaDataModel) {
+        interactor.initializeOrder()
+        router.navigateCreateScreen(with: pizzaData)
     }
+}
 
-    func updateData(with data: HomeDelegateImpl.DataType, at index: Int) {
-        updatedDataIndex = index
+extension HomeViewModel: PizzaCellDelegate {
 
-        if let metadataModel = data.metadataModel {
-            addOrUpdateDocument?(metadataModel)
-        }
-        delegate?.data[index] = data
+    func addOrder(with pizzaData: PizzaDataModel) {
+        interactor.addOrder(pizza: pizzaData)
+        showAlertDialog.send(())
     }
+}
+
+fileprivate enum Constants {
+    static let customPizzaName = "Custom Pizza"
 }

@@ -6,16 +6,21 @@
 //
 
 import UIKit
+import MVVMiOS
+import DataAccess
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: BaseAppDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
+        return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+
+    override func initialScreen() -> ScreenViewController? {
+        (self.screenProvider as? IOSScreenProvider)?.provideMainScreen()
     }
 
     func application(_ app: UIApplication,
@@ -41,6 +46,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         return true
+    }
+
+    override func registerDIContainerModules() {
+        self.containerManager.registerModule(injectorModuleType: LoggerModule.self)
+        self.containerManager.registerModule(injectorModuleType: UIModule.self)
+        self.containerManager.registerModule(injectorModuleType: DataAccessModule.self)
+
+        self.containerManager.registerModule(injectorModuleType: MainModule.self)
+        self.containerManager.registerModule(injectorModuleType: HomeModule.self)
+        self.containerManager.registerModule(injectorModuleType: CreateModule.self)
     }
 
     // MARK: State Preservation and Restoration
