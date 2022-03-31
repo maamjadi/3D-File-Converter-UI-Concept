@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - BaseScreenDelegate
 
-protocol BaseScreenDelegate: class {
+protocol BaseScreenDelegate: AnyObject {
     associatedtype DataType
     var data: [DataType] { get set }
 
@@ -25,7 +25,7 @@ class BaseScreenDelegateImpl: BaseScreenDelegate {
 
     private var dataUpdateListener: () -> Void
 
-    var data: [BaseScreenDelegateImpl.DataType] = [DataType]() {
+    var data: [DataType] = [DataType]() {
         didSet { dataUpdateListener() }
     }
 

@@ -54,7 +54,7 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                             detailView.transform = CGAffineTransform.identity
                             detailView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
                            },
-                           completion: {_ in
+                           completion: { _ in
                             transitionContext.completeTransition(true)
                            }
             )
@@ -65,7 +65,7 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                             detailView.transform = scaleTransform
                             detailView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
                            },
-                           completion: {_ in
+                           completion: { _ in
                             if !self.presenting {
                                 self.dismissCompletion?()
                             }
