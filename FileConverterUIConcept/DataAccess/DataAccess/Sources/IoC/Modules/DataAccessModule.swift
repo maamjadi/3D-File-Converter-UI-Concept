@@ -7,12 +7,15 @@
 
 import UIKit
 import MVVMiOS
-import Alamofire
 import Swinject
 
 open class DataAccessModule: InjectorModule {
 
     open override func register() {
-        // Dependencies to be registered here
+
+        self.container.register(StorageDataRepository.self) { _ in
+            StorageDataRepositoryImpl()
+        }
+        .inObjectScope(.container)
     }
 }

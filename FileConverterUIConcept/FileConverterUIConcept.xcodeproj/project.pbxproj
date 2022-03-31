@@ -17,7 +17,6 @@
 		E401A4E527F57F5200B87DD2 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401A4D327F57F5200B87DD2 /* HomeViewModel.swift */; };
 		E401A4E627F57F5200B87DD2 /* HomeBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401A4D527F57F5200B87DD2 /* HomeBinder.swift */; };
 		E401A4E727F57F5200B87DD2 /* HomeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401A4D727F57F5200B87DD2 /* HomeModule.swift */; };
-		E401A4E827F57F5200B87DD2 /* PizzaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401A4D927F57F5200B87DD2 /* PizzaTableViewCell.swift */; };
 		E401A4E927F57F5200B87DD2 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401A4DA27F57F5200B87DD2 /* HomeScreenView.swift */; };
 		E401A4EA27F57F5200B87DD2 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401A4DC27F57F5200B87DD2 /* HomeInteractor.swift */; };
 		E401A4EB27F57F5200B87DD2 /* HomeInteractorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401A4DD27F57F5200B87DD2 /* HomeInteractorImpl.swift */; };
@@ -45,6 +44,7 @@
 		E473BFF7254F2B9900B0549A /* conversionAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = E473BFF6254F2B9900B0549A /* conversionAnimation.json */; };
 		E473C005254F3F6D00B0549A /* UIViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = E473C004254F3F6D00B0549A /* UIViewX.swift */; };
 		E473C028254F7B2500B0549A /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E473C027254F7B2500B0549A /* PopAnimator.swift */; };
+		E4750B4027F5C3D000CE0A1B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4750B3F27F5C3D000CE0A1B /* MainViewModel.swift */; };
 		E4AC94E8254FE9480009F02E /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AC94E7254FE9480009F02E /* Array+Extension.swift */; };
 		E4B47CCC2545C834008DDE64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B47CCB2545C834008DDE64 /* AppDelegate.swift */; };
 		E4B47CCE2545C834008DDE64 /* DocumentBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B47CCD2545C834008DDE64 /* DocumentBrowserViewController.swift */; };
@@ -130,7 +130,6 @@
 		E401A4D327F57F5200B87DD2 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E401A4D527F57F5200B87DD2 /* HomeBinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBinder.swift; sourceTree = "<group>"; };
 		E401A4D727F57F5200B87DD2 /* HomeModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeModule.swift; sourceTree = "<group>"; };
-		E401A4D927F57F5200B87DD2 /* PizzaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PizzaTableViewCell.swift; sourceTree = "<group>"; };
 		E401A4DA27F57F5200B87DD2 /* HomeScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 		E401A4DC27F57F5200B87DD2 /* HomeInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		E401A4DD27F57F5200B87DD2 /* HomeInteractorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeInteractorImpl.swift; sourceTree = "<group>"; };
@@ -158,6 +157,7 @@
 		E473BFF6254F2B9900B0549A /* conversionAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = conversionAnimation.json; sourceTree = "<group>"; };
 		E473C004254F3F6D00B0549A /* UIViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewX.swift; sourceTree = "<group>"; };
 		E473C027254F7B2500B0549A /* PopAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
+		E4750B3F27F5C3D000CE0A1B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		E4AC94E7254FE9480009F02E /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		E4B47CC82545C834008DDE64 /* FileConverterUIConcept.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FileConverterUIConcept.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B47CCB2545C834008DDE64 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -257,6 +257,7 @@
 		E401A4CC27F57F5100B87DD2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				E4750B3E27F5C39100CE0A1B /* ViewModel */,
 				E401A4CD27F57F5100B87DD2 /* Inject */,
 				E401A4CE27F57F5100B87DD2 /* ViewController */,
 			);
@@ -320,7 +321,6 @@
 		E401A4D827F57F5200B87DD2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E401A4D927F57F5200B87DD2 /* PizzaTableViewCell.swift */,
 				E401A4DA27F57F5200B87DD2 /* HomeScreenView.swift */,
 			);
 			path = View;
@@ -483,12 +483,47 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		E44B4ACD27F5DCCF00107713 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				E401A4F027F57F7F00B87DD2 /* Create */,
+				E401A4D127F57F5200B87DD2 /* Home */,
+				E401A4CC27F57F5100B87DD2 /* Main */,
+				E4E57D8725464C0600258111 /* DocumentBrowser */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		E44B4ACE27F5DCD700107713 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E44B4ACF27F5DD0E00107713 /* Home */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E44B4ACF27F5DD0E00107713 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E4B47D612545EEEB008DDE64 /* HomeCollectionViewCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		E473C003254F3F6300B0549A /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				E473C004254F3F6D00B0549A /* UIViewX.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E4750B3E27F5C39100CE0A1B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E4750B3F27F5C3D000CE0A1B /* MainViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		E4B47CBF2545C834008DDE64 = {
@@ -621,10 +656,8 @@
 			isa = PBXGroup;
 			children = (
 				E401A4CB27F57F0900B87DD2 /* old */,
-				E401A4F027F57F7F00B87DD2 /* Create */,
-				E401A4D127F57F5200B87DD2 /* Home */,
-				E401A4CC27F57F5100B87DD2 /* Main */,
-				E4E57D8725464C0600258111 /* DocumentBrowser */,
+				E44B4ACE27F5DCD700107713 /* Views */,
+				E44B4ACD27F5DCCF00107713 /* Screens */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -632,7 +665,6 @@
 		E4B47D5A2545EE59008DDE64 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E4B47D612545EEEB008DDE64 /* HomeCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -963,7 +995,6 @@
 				E4B47CCE2545C834008DDE64 /* DocumentBrowserViewController.swift in Sources */,
 				E401A4E427F57F5200B87DD2 /* MainViewController.swift in Sources */,
 				E401A51327F57FC000B87DD2 /* ScreenProviderImpl.swift in Sources */,
-				E401A4E827F57F5200B87DD2 /* PizzaTableViewCell.swift in Sources */,
 				E473C028254F7B2500B0549A /* PopAnimator.swift in Sources */,
 				E401A50727F57F7F00B87DD2 /* CreateInteractorImpl.swift in Sources */,
 				E401A4EF27F57F5200B87DD2 /* HomeRouter.swift in Sources */,
@@ -978,6 +1009,7 @@
 				E401A51227F57FC000B87DD2 /* UIModule.swift in Sources */,
 				E401A4EB27F57F5200B87DD2 /* HomeInteractorImpl.swift in Sources */,
 				E401A54627F5833500B87DD2 /* MainModule.swift in Sources */,
+				E4750B4027F5C3D000CE0A1B /* MainViewModel.swift in Sources */,
 				E401A50427F57F7F00B87DD2 /* CreateModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

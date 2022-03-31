@@ -27,6 +27,8 @@
 		E46D03232795C1040036710A /* EnvironmentConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D03212795C1040036710A /* EnvironmentConfigManager.swift */; };
 		E46D03252795C1150036710A /* EnvironmentConfigManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D03242795C1150036710A /* EnvironmentConfigManagerImpl.swift */; };
 		E46D03262795C1150036710A /* EnvironmentConfigManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D03242795C1150036710A /* EnvironmentConfigManagerImpl.swift */; };
+		E4750B3B27F5BE6500CE0A1B /* StorageDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4750B3A27F5BE6500CE0A1B /* StorageDataRepository.swift */; };
+		E4750B3D27F5BE6F00CE0A1B /* StorageDataRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4750B3C27F5BE6F00CE0A1B /* StorageDataRepositoryImpl.swift */; };
 		E484E53F2784511C0012498E /* DataAccess.docc in Sources */ = {isa = PBXBuildFile; fileRef = E484E53E2784511C0012498E /* DataAccess.docc */; };
 		E484E5452784511C0012498E /* DataAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E484E53A2784511C0012498E /* DataAccess.framework */; };
 		E484E54A2784511C0012498E /* DataAccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E484E5492784511C0012498E /* DataAccessTests.swift */; };
@@ -58,6 +60,8 @@
 		E4583C2327885B270074BBDF /* ContextExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextExtension.swift; sourceTree = "<group>"; };
 		E46D03212795C1040036710A /* EnvironmentConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentConfigManager.swift; sourceTree = "<group>"; };
 		E46D03242795C1150036710A /* EnvironmentConfigManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentConfigManagerImpl.swift; sourceTree = "<group>"; };
+		E4750B3A27F5BE6500CE0A1B /* StorageDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageDataRepository.swift; sourceTree = "<group>"; };
+		E4750B3C27F5BE6F00CE0A1B /* StorageDataRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageDataRepositoryImpl.swift; sourceTree = "<group>"; };
 		E484E53A2784511C0012498E /* DataAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E484E53D2784511C0012498E /* DataAccess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataAccess.h; sourceTree = "<group>"; };
 		E484E53E2784511C0012498E /* DataAccess.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = DataAccess.docc; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 		E4583BB927870C900074BBDF /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				E4750B3927F5BE4F00CE0A1B /* StorageData */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -176,6 +181,15 @@
 				E412E10A279699BB00290531 /* EnvironmentConfig.plist */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		E4750B3927F5BE4F00CE0A1B /* StorageData */ = {
+			isa = PBXGroup;
+			children = (
+				E4750B3A27F5BE6500CE0A1B /* StorageDataRepository.swift */,
+				E4750B3C27F5BE6F00CE0A1B /* StorageDataRepositoryImpl.swift */,
+			);
+			path = StorageData;
 			sourceTree = "<group>";
 		};
 		E484E5302784511C0012498E = {
@@ -333,9 +347,11 @@
 			files = (
 				E401A4BD27F57A6400B87DD2 /* DocumentEntity+CoreDataClass.swift in Sources */,
 				E4583C2827885B270074BBDF /* ContextExtension.swift in Sources */,
+				E4750B3D27F5BE6F00CE0A1B /* StorageDataRepositoryImpl.swift in Sources */,
 				E46D03252795C1150036710A /* EnvironmentConfigManagerImpl.swift in Sources */,
 				E401A4B927F57A4600B87DD2 /* FileConverterUIConcept.xcdatamodel in Sources */,
 				E401A4BC27F57A6300B87DD2 /* DocumentEntity+CoreDataProperties.swift in Sources */,
+				E4750B3B27F5BE6500CE0A1B /* StorageDataRepository.swift in Sources */,
 				E401A4AE27F579F400B87DD2 /* Document.swift in Sources */,
 				E4583BC427870D550074BBDF /* DataAccessModule.swift in Sources */,
 				E401A4B827F57A4600B87DD2 /* FileConverterUIConcept.xcdatamodeld in Sources */,
